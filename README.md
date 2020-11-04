@@ -1,4 +1,7 @@
 # openapi-initializer
+
+https://github.com/PrimitiveSocial/openapi-initializer/blob/main/image.png
+
 Straight forward Laravel command to scaffold an OpenAPI spec file
 
 Scaffold an OpenAPI spec file in minutes. 
