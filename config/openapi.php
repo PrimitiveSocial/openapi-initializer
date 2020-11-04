@@ -3,5 +3,5 @@
 return [
     'url' => config('app.url'),
     'url_description' => 'Local url for testing',
-    'contract_location' => 'contract',
+    'contract_directory' => 'contract',
 ];
