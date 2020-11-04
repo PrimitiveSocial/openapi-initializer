@@ -1,5 +1,5 @@
 {
-    "name": "primitive/openapi-creator-command",
+    "name": "primitive/openapi-initializer",
     "description": "A command for Laravel to quickly scaffold an OpenAPI Spec file",
     "type": "library",
     "require": {
