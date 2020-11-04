@@ -15,6 +15,14 @@ class CreateOpenApiContractCommand extends Command
     {
         $this->info('Creating your OpenAPI Contract');
 
+        if (!file_exists(config_path('openapi.php'))) {
+            $publishConfig = $this->ask('You need to publish the config first. Would you like to do that?', 'yes');
+
+            if ($publishConfig) {
+                $this->call('vendor:publish --provider=OpenApiServiceProvider');
+            }
+        }
+
         $oasVersion = $this->ask('What version of OpenAPI are you using?', '3.0.3');
 
         $appName = $this->ask('What app are you working on?');
