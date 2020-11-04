@@ -19,7 +19,7 @@ class CreateOpenApiContractCommand extends Command
             $publishConfig = $this->ask('You need to publish the config first. Would you like to do that?', 'yes');
 
             if ($publishConfig) {
-                $this->call('vendor:publish --provider=OpenApiServiceProvider');
+                $this->call('vendor:publish', ['--provider' => 'OpenApiServiceProvider']);
             }
         }
 
