@@ -1,6 +1,6 @@
 # openapi-initializer
 
-![logo](https://github.com/PrimitiveSocial/openapi-initializer/blob/main/image.png)
+![logo](https://github.com/PrimitiveSocial/openapi-initializer/blob/main/oai.png)
 
 Straight forward Laravel command to scaffold an OpenAPI spec file
 
