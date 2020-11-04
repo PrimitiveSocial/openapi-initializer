@@ -20,6 +20,7 @@ class CreateOpenApiContractCommand extends Command
 
             if ($publishConfig) {
                 $this->call('vendor:publish', ['--provider' => 'Primitive\OpenApiServiceProvider']);
+                $this->call('config:cache');
             }
         }
 
@@ -72,6 +73,9 @@ class CreateOpenApiContractCommand extends Command
         $contract = Yaml::dump($data);
 
         if ($directoryName) {
+            $this->info(sprintf('Creating directory at: %s', sprintf('./%s', $directoryName)));
+
+
             mkdir(sprintf('./%s', $directoryName));
 
             file_put_contents(sprintf('./%s/openapi.yml', $directoryName), $contract);
@@ -79,6 +83,8 @@ class CreateOpenApiContractCommand extends Command
 
             $this->info(sprintf('Contract created at: ./%s/openapi.yml', $directoryName));
         } else {
+            $this->info(sprintf('Creating directory at: %s', sprintf('./%s', config('openapi.contract_directory'))));
+
             mkdir(sprintf('./%s', config('openapi.contract_directory')));
 
             file_put_contents(sprintf('./%s/openapi.yml', config('openapi.contract_directory')), $contract);
