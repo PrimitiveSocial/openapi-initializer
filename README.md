@@ -1,4 +1,4 @@
-# openapi-creator-command
+# openapi-initializer
 Straight forward Laravel command to scaffold an OpenAPI spec file
 
 Scaffold an OpenAPI spec file in minutes. 
