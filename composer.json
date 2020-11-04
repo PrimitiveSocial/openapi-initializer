@@ -1,0 +1,31 @@
+{
+    "name": "primitive/openapi-creator-command",
+    "description": "A command for Laravel to quickly scaffold an OpenAPI Spec file",
+    "type": "library",
+    "require": {
+        "symfony/yaml": "^5.1",
+        "orchestra/testbench": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "matt trask",
+            "email": "matt@leadwithprimitive.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Primitive\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Primitive\\OpenApiServiceProvider"
+            ]
+        }
+    }
+}
