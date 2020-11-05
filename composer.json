@@ -3,6 +3,7 @@
     "description": "A command for Laravel to quickly scaffold an OpenAPI Spec file",
     "type": "library",
     "require": {
+        "php": ">=7.4",
         "symfony/yaml": "^5.1",
         "orchestra/testbench": "^6.3"
     },

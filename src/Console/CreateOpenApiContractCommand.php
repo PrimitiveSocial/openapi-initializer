@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Primitive\Console;
 
 use Illuminate\Console\Command;
@@ -20,24 +22,20 @@ class CreateOpenApiContractCommand extends Command
 
             if ($publishConfig) {
                 $this->call('vendor:publish', ['--provider' => 'Primitive\OpenApiServiceProvider']);
+                $this->info('Lets cache your configs');
                 $this->call('config:cache');
             }
         }
 
         $oasVersion = $this->ask('What version of OpenAPI are you using?', '3.0.3');
-
         $appName = $this->ask('What app are you working on?');
-
         $developerName = $this->ask('What is your name? Can be your name, or a company/org name.');
         $developerEmail = $this->ask('What is your email? Can be a specific email like jon@gmail.com or developers@company.com.');
         $developerUrl = $this->ask('What is the url for the project? Can be a Github/Gitlab link, site url, company url etc.');
-
         $appVersion = $this->ask('What version of the application are you on?', '0.1.0');
-
         $appDescription = $this->ask('What is a description of the app?');
-
         $directoryName = $this->ask('Where do you want the spec file to live? The default is set in the config/openapi.php');
-
+        $this->newLine();
         $this->info('The contract is generated with empty fields for you to populate as you develop. If you have questions about the spec here is the official guide: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md');
 
         $data = [
@@ -73,25 +71,11 @@ class CreateOpenApiContractCommand extends Command
         $contract = Yaml::dump($data);
 
         if ($directoryName) {
-            $this->info(sprintf('Creating directory at: %s', sprintf('./%s', $directoryName)));
-
-
-            mkdir(sprintf('./%s', $directoryName));
-
-            file_put_contents(sprintf('./%s/openapi.yml', $directoryName), $contract);
-
-
-            $this->info(sprintf('Contract created at: ./%s/openapi.yml', $directoryName));
+            $this->createContractWithDirectoryName($directoryName, $contract);
         } else {
-            $this->info(sprintf('Creating directory at: %s', sprintf('./%s', config('openapi.contract_directory'))));
-
-            mkdir(sprintf('./%s', config('openapi.contract_directory')));
-
-            file_put_contents(sprintf('./%s/openapi.yml', config('openapi.contract_directory')), $contract);
-
-            $this->info(sprintf('Contract created at: ./%s/openapi.yml', config('openapi.contract_directory')));
+            $this->createContractInDefaultDirectory($contract);
         }
-
+        $this->newLine();
         $this->info('It\'s dangerous to go alone. Take this: https://stoplight.io/studio/');
 
         $installSpectral = $this->confirm('Do you want to install Stoplight Spectral so you can lint your OpenAPI contract as you build it?');
@@ -105,6 +89,28 @@ class CreateOpenApiContractCommand extends Command
         }
 
         $this->newLine();
-        $this->info('All finished. Happy coding!');
+        $this->info('All finished. Happy coding! If you want to see more tools that integrate into the OpenAPI toolset, please visit https://openapi.tools');
+    }
+
+    private function createContractWithDirectoryName(string $directoryName, string $contract)
+    {
+        $this->info(sprintf('Creating directory at: %s', sprintf('./%s', $directoryName)));
+
+        mkdir(sprintf('./%s', $directoryName));
+
+        file_put_contents(sprintf('./%s/openapi.yml', $directoryName), $contract);
+
+        $this->info(sprintf('Contract created at: ./%s/openapi.yml', $directoryName));
+    }
+
+    private function createContractInDefaultDirectory(string $contract)
+    {
+        $this->info(sprintf('Creating directory at: %s', sprintf('./%s', config('openapi.contract_directory'))));
+
+        mkdir(sprintf('./%s', config('openapi.contract_directory')));
+
+        file_put_contents(sprintf('./%s/openapi.yml', config('openapi.contract_directory')), $contract);
+
+        $this->info(sprintf('Contract created at: ./%s/openapi.yml', config('openapi.contract_directory')));
     }
 }
