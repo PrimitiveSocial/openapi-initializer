@@ -36,8 +36,14 @@ class CreateOpenApiContractCommand extends Command
         $appDescription = $this->ask('What is a description of the app?');
         $directoryName = $this->ask('Where do you want the spec file to live? The default is set in the config/openapi.php');
         $this->newLine();
-        $this->info('The contract is generated with empty fields for you to populate as you develop. If you have questions about the spec here is the official guide: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md');
+        $this->info(
+            'The contract is generated with empty fields for you to populate as you develop. 
+                   If you have questions about the spec here is the official guide: 
+                   https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md'
+        );
 
+        $this->newLine();
+        
         $data = [
             'openapi' => $oasVersion,
             'info' => [
@@ -85,11 +91,12 @@ class CreateOpenApiContractCommand extends Command
             exec('npm install -g @stoplight/spectral');
             $this->newLine();
             $this->info('To call Spectral, run this command:');
-            $this->line(sprintf('spectral lint %s/openapi.yml', config('openapi.directory')));
+            $this->line(sprintf('spectral lint %s/openapi.yml', config('openapi.contract_directory')));
         }
 
         $this->newLine();
         $this->info('All finished. Happy coding! If you want to see more tools that integrate into the OpenAPI toolset, please visit https://openapi.tools');
+        $this->newLine();
     }
 
     private function createContractWithDirectoryName(string $directoryName, string $contract)
