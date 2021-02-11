@@ -6,6 +6,12 @@ Straight forward Laravel command to scaffold an OpenAPI spec file
 
 Scaffold an OpenAPI spec file in minutes. 
 
+## Requirements
+
+Laravel versions 6.x, 7.x, and 8.x. 
+
+PHP 7.0 or greater. 
+
 ## Install
 ```
 composer require primitive/openapi-initializer
