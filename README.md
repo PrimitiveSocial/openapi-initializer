@@ -6,11 +6,18 @@ Straight forward Laravel command to scaffold an OpenAPI spec file
 
 Scaffold an OpenAPI spec file in minutes. 
 
+## OpenAPI 
+
+**OpenAPI** Default Version: 3.1.0
+
+Read more about the current OpenAPI Version [here](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md)
+
+
 ## Requirements
 
-Laravel versions 6.x, 7.x, and 8.x. 
+**Laravel** versions 6.x, 7.x, and 8.x. 
 
-PHP 7.0 or greater. 
+**PHP** 7.0 or greater. 
 
 ## Install
 ```

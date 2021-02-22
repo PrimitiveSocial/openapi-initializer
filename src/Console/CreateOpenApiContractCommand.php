@@ -27,7 +27,7 @@ class CreateOpenApiContractCommand extends Command
             }
         }
 
-        $oasVersion = $this->ask('What version of OpenAPI are you using?', '3.0.3');
+        $oasVersion = $this->ask('What version of OpenAPI are you using?', '3.1.0');
         $appName = $this->ask('What app are you working on?');
         $developerName = $this->ask('What is your name? Can be your name, or a company/org name.');
         $developerEmail = $this->ask('What is your email? Can be a specific email like jon@gmail.com or developers@company.com.');
